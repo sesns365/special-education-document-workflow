@@ -1,0 +1,46 @@
+# 本 Repository 只放工作流規則；學校公文與處理資料只留在私有本機。
+
+# 公文工作資料夾：永遠不要提交
+00原始公文備份/
+01待辦公文/
+02已完成待歸檔/
+03歸檔公文/
+90_每日處理紀錄/
+99_系統紀錄/
+
+# 常見公文與附件格式
+*.pdf
+*.zip
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+*.csv
+*.tsv
+
+# 公文分析與個案工作檔
+metadata.json
+擬辦建議.md
+讀取文字_*.txt
+*公文*.txt
+
+# 機密、認證與本機設定
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*secret*
+*token*
+*credential*
+state.json
+
+# 作業系統與編輯器暫存檔
+Thumbs.db
+.DS_Store
+*.lnk
+.vscode/
+.idea/

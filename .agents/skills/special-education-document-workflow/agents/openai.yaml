@@ -1,0 +1,7 @@
+interface:
+  display_name: "特教公文工作流"
+  short_description: "特教公文開工、收工、待辦分析、期限排序與安全歸檔流程"
+  default_prompt: "使用 $special-education-document-workflow 執行本專案的特教公文工作流。"
+
+policy:
+  allow_implicit_invocation: true
