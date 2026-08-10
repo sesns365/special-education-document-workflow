@@ -4,6 +4,8 @@
 
 本 Repository 只保存工作流規則與技能檔，不保存任何學校公文、學生資料或個人資料。
 
+「00原始公文備份」是 AI 的待讀取入口，不是機密隔離區。任何放入該資料夾、且使用者授權執行「開工」的支援格式，都可能被 AI 開啟、解壓、OCR 或轉成文字。若不希望 AI 讀取，請不要放入「00原始公文備份」，並將文件留在專案根目錄及目前 Codex 工作區之外的私有資料夾。
+
 Repository：<https://github.com/sesns365/special-education-document-workflow>
 
 ## 重要安全提醒
@@ -26,6 +28,19 @@ git diff --cached --stat
 ~~~
 
 若不小心上傳機密資料，不能只在最新版本刪除檔案就視為安全。應立即停止分享、撤銷或更換已暴露的密碼／Token，通知學校或資料管理者，並另行處理 Git 歷史中的敏感內容。
+
+## 檔案閱讀能力
+
+這個 Repository 不重複打包通用閱讀技能，只負責依格式路由。共享者需確認自己的 Codex 環境已啟用相應能力：
+
+| 來源格式 | 建議閱讀能力 |
+|---|---|
+| 文字型 PDF | PDF 讀取、PyMuPDF 或 MarkItDown |
+| 掃描 PDF、JPG、PNG、TIF | PDF OCR |
+| DOCX、XLSX、PPTX | Microsoft Office 文件讀取或 MarkItDown |
+| ZIP | 安全解壓後，依內含檔案格式逐一讀取 |
+
+若對方環境沒有對應能力，技能應回報「無法讀取的格式」，不可只依檔名猜測或宣稱已完成分析。這些通用能力需依對方的 Codex 環境另外啟用或安裝，不會隨本 Repository 自動安裝。
 
 ## 下載與安裝
 

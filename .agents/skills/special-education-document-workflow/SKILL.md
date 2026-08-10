@@ -1,6 +1,6 @@
 ---
 name: special-education-document-workflow
-description: "Project-local workflow for the special-education official-document project. Use when the current project contains 特教公文工作流使用說明書.md or when the user invokes 專案初始化、開工、收工、歸檔, asks to analyze incoming official documents, build the daily todo summary, classify cases, or archive completed cases."
+description: "Project-local workflow for reading and processing authorized special-education official documents in PDF, ZIP, DOCX, XLSX, PPTX, and scanned-image formats. Use when the current project contains 特教公文工作流使用說明書.md or when the user invokes 專案初始化、開工、收工、歸檔, asks to classify incoming documents, build the daily todo summary, or archive completed cases."
 ---
 
 # 特教公文工作流
@@ -20,6 +20,26 @@ description: "Project-local workflow for the special-education official-document
 
 保留原始公文及個資安全。不要自動簽核、正式送件、刪除原始檔、決定學生服務，或在沒有明確指令時搬移案件。
 
+## 文件閱讀能力
+
+依來源格式選擇已啟用的閱讀能力：
+
+- 文字型 PDF：使用 PDF 文字／結構化 PDF 讀取能力；需要轉成可搜尋文字時可使用 MarkItDown。
+- 掃描 PDF 或掃描影像：使用 PDF OCR；OCR 不足時標示需人工核對，不要自行補猜。
+- DOCX、XLSX、PPTX：使用 Microsoft Office 文件讀取能力；需要純文字整理時可使用 MarkItDown。
+- ZIP：先檢查壓縮檔清單，再安全解壓到案件工作副本，並對其中的 PDF、Office 或掃描檔逐一使用對應能力；保留原始 ZIP。
+- 若對應能力未啟用或讀取失敗，明確回報缺少的格式能力，停止該檔案分析，不要以檔名或不完整預覽假裝完成。
+
+本 Repository 不複製或安裝通用閱讀技能；共享者需在自己的 Codex 環境啟用可用的 PDF、OCR、Office 或 MarkItDown 能力。
+
+## 機密文件隔離
+
+「00原始公文備份」是 AI 的待讀取入口，不是機密隔離區。輸入「開工」前，只將已獲使用者授權 AI 讀取的來源放入該資料夾。
+
+不希望 AI 讀取的機密、密件、學生個案資料或未經核准的公文，應放在專案根目錄及目前 Codex 工作區之外的私有資料夾，或不要提供給此工作區。只放在其他未掃描子資料夾，不能視為完整安全邊界；若使用者明確要求，AI 仍可能讀取可存取的檔案。
+
+若 00原始公文備份 中出現檔名已標示「機密」、「密件」、「不可讀取」或其他禁止分析字樣，先停止，不開啟檔案內容，請使用者自行移出並另行處理。
+
 ## 指令分流
 
 ### 專案初始化
@@ -33,9 +53,9 @@ description: "Project-local workflow for the special-education official-document
 
 ### 開工
 
-只掃描 00原始公文備份中的 PDF 與 ZIP，並保留原始檔案及原始檔名。
+只處理放在 00原始公文備份 中、且已獲使用者授權 AI 讀取的 PDF、ZIP、DOC、DOCX、XLS、XLSX、PPT、PPTX 及掃描影像（JPG、JPEG、PNG、TIF、TIFF），並保留原始檔案及原始檔名。
 
-對每份新來源：
+先依「文件閱讀能力」選擇格式路由，再對每份新來源：
 
 1. 使用檔案雜湊避免重複處理。
 2. 安全解壓 ZIP，將主文與附件平鋪放入同一案件資料夾，不建立附件子資料夾。
